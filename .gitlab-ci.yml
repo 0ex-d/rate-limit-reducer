@@ -1,0 +1,20 @@
+before_start:
+  script:
+    - echo "Checking package info"
+    - rustc --version && cargo --version
+
+stages:
+  - build
+  - test
+
+build:
+  script:
+    - echo "Running Build"
+    - cargo build
+
+test:
+  dependencies:
+    - build
+  script:
+    - echo "Unit test"
+    - cargo test --workspace --verbose
